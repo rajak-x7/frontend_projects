@@ -1,0 +1,1 @@
+const chessboard = document. querySelectorAll();   iske under kya dalu isme logic lagaawa ki chess kaam kaise karta hai 
