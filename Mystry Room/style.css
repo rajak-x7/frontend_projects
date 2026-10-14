@@ -1,0 +1,784 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    color: #f8fafc;
+
+    background:
+        radial-gradient(circle at 50% 10%, #202d42 0%, #0b101a 45%, #030509 100%);
+
+    overflow-x: hidden;
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+.header {
+    position: relative;
+    text-align: center;
+    padding: 35px 20px 30px;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(7, 12, 22, 0.98),
+            rgba(7, 12, 22, 0.78)
+        );
+
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+
+    box-shadow:
+        0 15px 40px rgba(0,0,0,0.45);
+}
+
+.header h1 {
+    font-size: 40px;
+    letter-spacing: 5px;
+
+    color: #f8fafc;
+
+    text-shadow:
+        0 0 8px rgba(96,165,250,0.8),
+        0 0 25px rgba(59,130,246,0.35);
+}
+
+.header p {
+    margin-top: 10px;
+
+    color: #94a3b8;
+
+    font-size: 14px;
+
+    letter-spacing: 4px;
+
+    text-transform: uppercase;
+}
+
+
+/* =========================================
+   MAIN LAYOUT
+========================================= */
+
+.game-container {
+    width: 92%;
+    max-width: 1250px;
+
+    margin: 38px auto;
+
+    display: grid;
+
+    grid-template-columns: 1fr 285px;
+
+    gap: 25px;
+}
+
+
+/* =========================================
+   ROOM
+========================================= */
+
+.room {
+    min-height: 600px;
+
+    padding: 25px;
+
+    position: relative;
+
+    overflow: hidden;
+
+    border-radius: 18px;
+
+    border: 1px solid rgba(255,255,255,0.13);
+
+    background:
+        linear-gradient(
+            180deg,
+            #514638 0%,
+            #40372e 57%,
+            #30261f 57%,
+            #211914 100%
+        );
+
+    box-shadow:
+        0 25px 60px rgba(0,0,0,0.55),
+        inset 0 0 100px rgba(0,0,0,0.4);
+}
+
+
+/* =========================================
+   CEILING SPOTLIGHT
+========================================= */
+
+.room::before {
+    content: "";
+
+    position: absolute;
+
+    width: 420px;
+    height: 420px;
+
+    top: -220px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,220,150,0.3) 0%,
+            rgba(255,200,100,0.12) 35%,
+            transparent 70%
+        );
+
+    filter: blur(8px);
+
+    pointer-events: none;
+}
+
+
+/* =========================================
+   ROOM TITLE
+========================================= */
+
+.room h2 {
+    position: relative;
+
+    z-index: 2;
+
+    text-align: center;
+
+    font-size: 25px;
+
+    margin-bottom: 18px;
+
+    letter-spacing: 1px;
+
+    color: #fff;
+
+    text-shadow:
+        0 3px 10px rgba(0,0,0,0.8);
+}
+
+
+/* =========================================
+   ROOM FLOOR
+========================================= */
+
+.room-objects {
+    height: 455px;
+
+    position: relative;
+
+    overflow: hidden;
+
+    border-radius: 10px;
+
+    background:
+        repeating-linear-gradient(
+            90deg,
+            #2a211b 0px,
+            #2a211b 70px,
+            #342820 71px,
+            #342820 73px
+        );
+
+    box-shadow:
+        inset 0 15px 30px rgba(0,0,0,0.5),
+        inset 0 -20px 40px rgba(0,0,0,0.4);
+}
+
+
+/* floor glow */
+
+.room-objects::before {
+    content: "";
+
+    position: absolute;
+
+    width: 600px;
+    height: 250px;
+
+    left: 50%;
+    bottom: -150px;
+
+    transform: translateX(-50%);
+
+    background:
+        radial-gradient(
+            ellipse,
+            rgba(255,180,80,0.13),
+            transparent 70%
+        );
+
+    pointer-events: none;
+}
+
+
+/* =========================================
+   OBJECT
+========================================= */
+
+.object {
+    position: absolute;
+
+    min-width: 105px;
+
+    padding: 15px 12px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 9px;
+
+    border-radius: 14px;
+
+    border: 1px solid rgba(255,255,255,0.08);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(18,20,24,0.88),
+            rgba(5,7,10,0.82)
+        );
+
+    color: white;
+
+    font-size: 48px;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        border-color 0.3s ease,
+        background 0.3s ease;
+
+    box-shadow:
+        0 12px 25px rgba(0,0,0,0.5);
+
+    z-index: 3;
+}
+
+
+/* label */
+
+.object span {
+    padding: 6px 13px;
+
+    border-radius: 6px;
+
+    background: rgba(0,0,0,0.8);
+
+    color: #e2e8f0;
+
+    font-size: 12px;
+
+    letter-spacing: 1px;
+
+    text-transform: uppercase;
+}
+
+
+/* hover */
+
+.object:hover {
+    transform: translateY(-10px) scale(1.07);
+
+    border-color: rgba(255,205,120,0.55);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(42,34,25,0.95),
+            rgba(8,9,11,0.95)
+        );
+
+    box-shadow:
+        0 0 20px rgba(255,190,90,0.12),
+        0 20px 35px rgba(0,0,0,0.6);
+}
+
+
+/* =========================================
+   OBJECT POSITIONS
+========================================= */
+
+.picture {
+    top: 45px;
+    left: 11%;
+}
+
+.locker {
+    top: 45px;
+    right: 11%;
+}
+
+.bookshelf {
+    bottom: 50px;
+    left: 11%;
+}
+
+.laptop {
+    bottom: 50px;
+    right: 11%;
+}
+
+.exit {
+    bottom: 30px;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+}
+
+.exit:hover {
+    transform:
+        translateX(-50%)
+        translateY(-10px)
+        scale(1.07);
+}
+
+
+/* =========================================
+   INVENTORY
+========================================= */
+
+.inventory {
+    min-height: 600px;
+
+    padding: 22px;
+
+    border-radius: 18px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(27,39,57,0.92),
+            rgba(7,13,23,0.96)
+        );
+
+    border: 1px solid rgba(148,163,184,0.16);
+
+    box-shadow:
+        0 25px 50px rgba(0,0,0,0.45);
+
+    backdrop-filter: blur(12px);
+}
+
+
+.inventory h2 {
+    text-align: center;
+
+    margin-bottom: 22px;
+
+    font-size: 22px;
+
+    letter-spacing: 2px;
+
+    color: #e2e8f0;
+}
+
+
+/* =========================================
+   INVENTORY ITEMS
+========================================= */
+
+.inventory-items {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 12px;
+}
+
+
+.item {
+    padding: 16px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    border-radius: 12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(51,65,85,0.8),
+            rgba(30,41,59,0.8)
+        );
+
+    border: 1px solid rgba(148,163,184,0.12);
+
+    cursor: pointer;
+
+    transition: 0.25s;
+}
+
+
+.item:hover {
+    transform: translateX(7px);
+
+    border-color: rgba(96,165,250,0.45);
+
+    box-shadow:
+        0 8px 20px rgba(0,0,0,0.35);
+}
+
+
+/* =========================================
+   GAME STATS
+========================================= */
+
+.game-stats {
+    width: 92%;
+    max-width: 1250px;
+
+    margin: 0 auto 25px;
+
+    display: grid;
+
+    grid-template-columns: repeat(3,1fr);
+
+    gap: 18px;
+}
+
+
+.stat {
+    position: relative;
+
+    padding: 20px;
+
+    text-align: center;
+
+    border-radius: 15px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #182538,
+            #0b121e
+        );
+
+    border: 1px solid rgba(148,163,184,0.14);
+
+    box-shadow:
+        0 12px 30px rgba(0,0,0,0.35);
+
+    overflow: hidden;
+
+    transition: 0.25s;
+}
+
+
+.stat::before {
+    content: "";
+
+    position: absolute;
+
+    width: 100px;
+    height: 100px;
+
+    top: -50px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    background: rgba(96,165,250,0.12);
+
+    filter: blur(25px);
+}
+
+
+.stat:hover {
+    transform: translateY(-5px);
+
+    border-color: rgba(96,165,250,0.35);
+}
+
+
+.stat span {
+    position: relative;
+
+    font-size: 28px;
+}
+
+
+.stat p {
+    margin: 8px 0;
+
+    color: #64748b;
+
+    font-size: 11px;
+
+    letter-spacing: 3px;
+
+    text-transform: uppercase;
+}
+
+
+.stat strong {
+    font-size: 22px;
+
+    color: #e2e8f0;
+}
+
+
+/* =========================================
+   DETECTIVE LOG
+========================================= */
+
+.detective-log {
+    width: 92%;
+    max-width: 1250px;
+
+    margin: 0 auto 40px;
+
+    padding: 22px;
+
+    border-radius: 15px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #172334,
+            #0a111c
+        );
+
+    border: 1px solid rgba(148,163,184,0.14);
+
+    box-shadow:
+        0 15px 35px rgba(0,0,0,0.35);
+}
+
+
+.detective-log h2 {
+    margin-bottom: 12px;
+
+    font-size: 19px;
+
+    letter-spacing: 1px;
+}
+
+
+.detective-log p {
+    color: #aeb9c8;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================
+   MODAL
+========================================= */
+
+.modal {
+    position: fixed;
+
+    inset: 0;
+
+    display: none;
+
+    justify-content: center;
+
+    align-items: center;
+
+    background:
+        rgba(0,0,0,0.82);
+
+    backdrop-filter: blur(9px);
+
+    z-index: 100;
+}
+
+
+.modal-content {
+    width: 370px;
+
+    padding: 35px;
+
+    border-radius: 18px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #1e293b,
+            #080e18
+        );
+
+    border: 1px solid rgba(148,163,184,0.25);
+
+    text-align: center;
+
+    position: relative;
+
+    box-shadow:
+        0 0 70px rgba(0,0,0,0.8);
+}
+
+
+.modal-content h2 {
+    margin-bottom: 12px;
+}
+
+
+.modal-content p {
+    color: #94a3b8;
+
+    margin-bottom: 20px;
+}
+
+
+.close-btn {
+    position: absolute;
+
+    top: 12px;
+    right: 17px;
+
+    border: none;
+
+    background: transparent;
+
+    color: #64748b;
+
+    font-size: 22px;
+
+    cursor: pointer;
+}
+
+
+.close-btn:hover {
+    color: white;
+}
+
+
+#locker-code {
+    width: 100%;
+
+    padding: 14px;
+
+    border-radius: 10px;
+
+    border: 1px solid #475569;
+
+    background: #020617;
+
+    color: white;
+
+    outline: none;
+
+    text-align: center;
+
+    font-size: 22px;
+
+    letter-spacing: 8px;
+
+    margin-bottom: 15px;
+}
+
+
+#locker-code:focus {
+    border-color: #60a5fa;
+
+    box-shadow:
+        0 0 18px rgba(96,165,250,0.2);
+}
+
+
+#unlock-btn {
+    width: 100%;
+
+    padding: 14px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #8b5e34,
+            #c08445
+        );
+
+    color: white;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.25s;
+}
+
+
+#unlock-btn:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 10px 25px rgba(192,132,69,0.25);
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 800px) {
+
+    .game-container {
+        grid-template-columns: 1fr;
+    }
+
+    .inventory {
+        min-height: auto;
+    }
+
+    .game-stats {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+@media (max-width: 500px) {
+
+    .header h1 {
+        font-size: 27px;
+        letter-spacing: 3px;
+    }
+
+    .game-container {
+        width: 95%;
+    }
+
+    .room {
+        min-height: 520px;
+    }
+
+    .room-objects {
+        height: 390px;
+    }
+
+    .object {
+        min-width: 80px;
+        font-size: 35px;
+        padding: 10px;
+    }
+
+    .modal-content {
+        width: 90%;
+    }
+}

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mystery Room</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <h1>🔎 MYSTERY ROOM</h1>
+        <p>Escape the Room</p>
+    </header>
+
+
+    <!-- Main Game Area -->
+    <main class="game-container">
+
+        <!-- Room -->
+        <section class="room">
+
+            <h2>🏠 Mystery Room</h2>
+
+            <!-- Objects inside room -->
+            <div class="room-objects">
+
+                <button class="object picture">
+                    🖼️
+                    <span>Picture</span>
+                </button>
+
+                <button class="object locker">
+                    🔒
+                    <span>Locker</span>
+                </button>
+
+                <button class="object bookshelf">
+                    📚
+                    <span>Bookshelf</span>
+                </button>
+
+                <button class="object laptop">
+                    💻
+                    <span>Laptop</span>
+                </button>
+
+                <button class="object exit">
+                    🚪
+                    <span>Exit</span>
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- Inventory -->
+       <div class="inventory-items">
+
+    <div class="item">
+        🎒
+        <span>Inventory Empty</span>
+    </div>
+
+</div>
+
+    </main>
+
+
+    <!-- Game Stats -->
+    <section class="game-stats">
+
+        <div class="stat">
+            <span>⏱️</span>
+            <p>TIME</p>
+            <strong>09:42</strong>
+        </div>
+
+        <div class="stat">
+            <span>🔍</span>
+            <p>CLUES</p>
+            <strong>3 / 5</strong>
+        </div>
+
+        <div class="stat">
+            <span>❤️</span>
+            <p>LIFE</p>
+            <strong>3</strong>
+        </div>
+
+    </section>
+
+
+    <!-- Detective Log -->
+    <section class="detective-log">
+
+        <h2>🔎 Detective Log</h2>
+
+        <p id="game-message">
+            You entered the room. Find clues and escape!
+        </p>
+
+    </section>
+
+
+    <!-- Locker Modal -->
+    <div class="modal" id="locker-modal">
+
+        <div class="modal-content">
+
+            <button class="close-btn">✕</button>
+
+            <h2>🔒 Locker</h2>
+
+            <p>Enter the 4 digit code</p>
+
+            <input 
+                type="text"
+                id="locker-code"
+                maxlength="4"
+                placeholder="0000"
+            >
+
+            <button id="unlock-btn">
+                UNLOCK
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <script src="app.js"></script>
+
+</body>
+</html>
